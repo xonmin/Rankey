@@ -3,43 +3,59 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.7.3"
     id("io.spring.dependency-management") version "1.0.13.RELEASE"
+    id("application")
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
 }
 
-group = "com.xonmin"
-version = "0.0.1-SNAPSHOT"
+allprojects{
+    repositories {
+        mavenCentral()
+    }
+}
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-configurations {
-    compileOnly {
-        extendsFrom(configurations.annotationProcessor.get())
+/** Version */
+val kotlinLoggingVersion = "2.1.20"
+
+application {
+    mainClass.set("com.xonmin.api.RankeyApiApplication.kt")
+}
+
+subprojects {
+    group = "com.xonmin"
+    version = "0.0.1-SNAPSHOT"
+
+    repositories {
+        mavenCentral()
     }
-}
 
-repositories {
-    mavenCentral()
-}
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
+    apply(plugin = "java-library")
+    apply(plugin = "kotlin")
+    apply(plugin = "kotlin-spring")
+    apply(plugin = "application")
 
-dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    compileOnly("org.projectlombok:lombok")
-    annotationProcessor("org.projectlombok:lombok")
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
-}
+    dependencies {
+        implementation("org.jetbrains.kotlin:kotlin-reflect")
+        implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
-        jvmTarget = "1.8"
+        // Kotlin Logging
+        implementation("io.github.microutils:kotlin-logging-jvm:${kotlinLoggingVersion}")
+
+        // Test
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
-}
 
-tasks.withType<Test> {
-    useJUnitPlatform()
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "1.8"
+        }
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
 }
