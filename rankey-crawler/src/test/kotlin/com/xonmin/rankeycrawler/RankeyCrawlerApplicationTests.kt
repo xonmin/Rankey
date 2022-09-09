@@ -1,13 +1,13 @@
-package com.xonmin.rankey
+package com.xonmin.rankeycrawler
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class RankeyApplicationTests {
+class RankeyCrawlerApplicationTests {
 
-    @Test
-    fun contextLoads() {
-    }
+	@Test
+	fun contextLoads() {
+	}
 
 }

@@ -1,11 +1,11 @@
-package com.xonmin.rankey
+package com.xonmin.rankeycrawler
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class RankeyApplication
+class RankeyCrawlerApplication
 
 fun main(args: Array<String>) {
-    runApplication<RankeyApplication>(*args)
+	runApplication<RankeyCrawlerApplication>(*args)
 }
