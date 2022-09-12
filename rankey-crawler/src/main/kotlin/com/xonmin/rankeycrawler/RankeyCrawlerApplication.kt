@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class RankeyCrawlerApplication
 
 fun main(args: Array<String>) {
-	runApplication<RankeyCrawlerApplication>(*args)
+    runApplication<RankeyCrawlerApplication>(*args)
 }
