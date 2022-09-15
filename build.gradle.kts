@@ -6,9 +6,10 @@ plugins {
     id("application")
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
+    id("org.jlleitschuh.gradle.ktlint") version "10.3.0"
 }
 
-allprojects{
+allprojects {
     repositories {
         mavenCentral()
     }
