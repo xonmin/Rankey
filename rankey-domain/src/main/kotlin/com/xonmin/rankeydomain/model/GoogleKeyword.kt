@@ -1,9 +1,12 @@
-package com.xonmin.rankeycrawler.model
+package com.xonmin.rankeydomain.model
 
+import org.bson.types.ObjectId
+import org.springframework.data.annotation.Id
 import java.time.LocalDateTime
 
-data class GoogleKeyword (
-    private val id: String,
+data class GoogleKeyword(
+    @Id
+    private val id: ObjectId,
     private val rank: Int,
     private val keyword: String,
     private val searchCount: String,
