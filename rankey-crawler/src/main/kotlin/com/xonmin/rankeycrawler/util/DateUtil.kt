@@ -1,5 +1,6 @@
 package com.xonmin.rankeycrawler.util
 
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -11,8 +12,8 @@ class DateUtil {
             return formatter.format(date)
         }
 
-        fun convertDateTimeToDate(dateTime: LocalDateTime, formatter: DateTimeFormatter): String {
-            return formatter.format(dateTime)
+        fun convertDateTimeToDate(dateTime: LocalDateTime): LocalDate {
+            return LocalDate.from(dateTime)
         }
 
         fun convertStringToDateTime(dateTime: String): LocalDateTime {

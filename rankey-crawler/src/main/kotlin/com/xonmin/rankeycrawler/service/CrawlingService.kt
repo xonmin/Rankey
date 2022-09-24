@@ -11,9 +11,8 @@ import org.openqa.selenium.WebElement
 import org.openqa.selenium.chrome.ChromeDriver
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.scheduling.annotation.Async
-import org.springframework.scheduling.annotation.Scheduled
 import org.springframework.stereotype.Service
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 @Service
@@ -32,7 +31,7 @@ class CrawlingService {
     fun crawl(): List<GoogleKeyword> {
         val dateTimeStamp =
             DateUtil.convertDateToString(LocalDateTime.now(), DateUtil.DATE_TIME_WITH_DELIMITER_FORMATTER)
-        val date = DateUtil.convertDateTimeToDate(LocalDateTime.now().minusDays(1), DateUtil.DATE_FORMATTER)
+        val date = DateUtil.convertDateTimeToDate(LocalDateTime.now().minusDays(1))
         log.info("Start Crawling For [$date] At : [$dateTimeStamp]")
 
         try {
@@ -41,11 +40,13 @@ class CrawlingService {
 
             val targetKeywordsBox: WebElement = driver.findElement(By.xpath(Constant.CRAWL_TARGET_BOX_XPATH))
             val crawlDate = targetKeywordsBox.findElement(By.xpath(Constant.CRWAL_TARGET_DATE_XPATH)).text
+            log.info("Access Page Keyword Target : [$crawlDate]")
+
             val keywordBlockList =
                 targetKeywordsBox.findElements(By.className(Constant.CRWAL_TARGET_BLOCKLIST_CLASSNAME))
 
             return keywordBlockList.map { block ->
-                toGoogleKeyword(block, dateTimeStamp, crawlDate)
+                toGoogleKeyword(block, dateTimeStamp, date)
             }.toList()
         } catch (e: Exception) {
             log.error("Crawling ERROR : [${e.printStackTrace()}]")
@@ -58,7 +59,7 @@ class CrawlingService {
     private fun toGoogleKeyword(
         block: WebElement,
         dateTimeStamp: String,
-        crawlDate: String
+        crawlDate: LocalDate
     ): GoogleKeyword {
         val element = block.findElement(By.tagName(Constant.TAG_FEED_ITEM))
             .findElement(By.tagName(Constant.TAG_NG_INCLUDE))
