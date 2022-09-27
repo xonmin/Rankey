@@ -17,9 +17,6 @@ import java.time.LocalDateTime
 
 @Service
 class CrawlingService {
-
-    val driver = chrome()
-
     private val log: Logger = LoggerFactory.getLogger(CrawlingService::class.java.name)
 
     private final fun chrome(): WebDriver {
@@ -27,8 +24,8 @@ class CrawlingService {
         return ChromeDriver()
     }
 
-
     fun crawl(): List<GoogleKeyword> {
+        val driver = chrome()
         val dateTimeStamp =
             DateUtil.convertDateToString(LocalDateTime.now(), DateUtil.DATE_TIME_WITH_DELIMITER_FORMATTER)
         val date = DateUtil.convertDateTimeToDate(LocalDateTime.now().minusDays(1))
