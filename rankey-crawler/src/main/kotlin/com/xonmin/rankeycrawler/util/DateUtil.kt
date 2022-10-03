@@ -17,7 +17,7 @@ class DateUtil {
         }
 
         fun convertStringToDateTime(dateTime: String): LocalDateTime {
-            return LocalDateTime.parse(dateTime)
+            return LocalDateTime.parse(dateTime, DATE_TIME_WITH_DELIMITER_FORMATTER)
         }
     }
 }
