@@ -76,12 +76,12 @@ class CrawlingService {
             .findElement(By.className(Constant.CLASS_SUMMARY_TEXT))
         val newsUrl = news.getAttribute(Constant.ATTRIBUTE_HREF)
         val newsTitle = news.text
-        val searchCount = element.findElement(By.className(Constant.CLASS_VISIBLE))
-            .findElement(By.tagName(Constant.TAG_NG_INCLUDE))
+        val searchCount = element.findElement(By.tagName(Constant.TAG_NG_INCLUDE))
             .findElement(By.className(Constant.CLASS_SEARCH_COUNT))
             .findElement(By.className(Constant.CLASS_SEARCH_COUNT_TITLE)).text
         val timestamp = DateUtil.convertStringToDateTime(dateTimeStamp)
 
+        // @TODO fix invalid hexadecimal representation of an ObjectId: [개천절]
         return GoogleKeyword(
             id = ObjectId(keyword),
             rank = rank,
