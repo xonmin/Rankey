@@ -4,7 +4,6 @@ import com.xonmin.rankeycrawler.util.Constant
 import com.xonmin.rankeycrawler.util.DateUtil
 import com.xonmin.rankeydomain.model.GoogleKeyword
 import io.github.bonigarcia.wdm.WebDriverManager
-import org.bson.types.ObjectId
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
@@ -74,7 +73,8 @@ class CrawlingService {
         val news = detailContext.findElement(By.className(Constant.CLASS_DETAILS_BOTTOM))
             .findElement(By.tagName(Constant.TAG_DIV))
             .findElement(By.className(Constant.CLASS_SUMMARY_TEXT))
-        val newsUrl = news.getAttribute(Constant.ATTRIBUTE_HREF)
+        val newsUrl = news.findElement(By.tagName(Constant.TAG_A))
+            .getAttribute(Constant.ATTRIBUTE_HREF)
         val newsTitle = news.text
         val searchCount = element.findElement(By.tagName(Constant.TAG_NG_INCLUDE))
             .findElement(By.className(Constant.CLASS_SEARCH_COUNT))
@@ -82,8 +82,9 @@ class CrawlingService {
         val timestamp = DateUtil.convertStringToDateTime(dateTimeStamp)
 
         // @TODO fix invalid hexadecimal representation of an ObjectId: [개천절]
+        log.info("Crawling Data : rank : [$rank], keyword : [$keyword], searchCount: [$searchCount] " +
+                "newsTitle: [$newsTitle], link: [$newsUrl]")
         return GoogleKeyword(
-            id = ObjectId(keyword),
             rank = rank,
             keyword = keyword,
             searchCount = searchCount,
