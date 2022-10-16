@@ -1,4 +1,4 @@
-package com.xonmin.rankeydomain.model
+package com.xonmin.rankey.model
 
 import org.bson.types.ObjectId
 import org.springframework.data.annotation.CreatedDate
