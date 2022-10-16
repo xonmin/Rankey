@@ -24,10 +24,10 @@ object Constant {
     const val CLASS_INDEX = "index"
     const val CLASS_TITLE = "title"
     const val CLASS_SUMMARY_TEXT= "summary-text"
-    const val CLASS_VISIBLE = "visible"
     const val CLASS_SEARCH_COUNT = "search-count"
     const val CLASS_SEARCH_COUNT_TITLE = "search-count-title"
 
     const val ATTRIBUTE_HREF = "href"
 
+    const val RANKEY_BASE_PACKAGE = "com.xonmin.rankey"
 }

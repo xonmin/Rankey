@@ -14,7 +14,7 @@ import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory
 @EnableMongoAuditing
 class MongoConfig {
     @Bean
-    @ConfigurationProperties("spring.data.mongodb")
+    @ConfigurationProperties(prefix = "spring.data.mongodb")
     fun properties(): MongoProperties {
         return MongoProperties()
     }

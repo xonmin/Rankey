@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class GoogleKeywordService(
-    val repository: GoogleKeywordRepository
+    private val repository: GoogleKeywordRepository
 ) {
     fun saveAll(keywordList: List<GoogleKeyword>) {
         repository.saveAll(keywordList)
