@@ -1,4 +1,4 @@
-package com.xonmin.rankeycrawler.config
+package com.xonmin.rankey.config
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

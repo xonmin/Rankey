@@ -1,6 +1,6 @@
-package com.xonmin.rankeycrawler
+package com.xonmin.rankey
 
-import com.xonmin.rankeycrawler.service.CrawlingService
+import com.xonmin.rankey.service.CrawlingService
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest

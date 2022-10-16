@@ -1,8 +1,8 @@
-package com.xonmin.rankeycrawler.service
+package com.xonmin.rankey.service
 
-import com.xonmin.rankeycrawler.util.Constant
-import com.xonmin.rankeycrawler.util.DateUtil
-import com.xonmin.rankeydomain.model.GoogleKeyword
+import com.xonmin.rankey.util.Constant
+import com.xonmin.rankey.util.DateUtil
+import com.xonmin.rankey.model.GoogleKeyword
 import io.github.bonigarcia.wdm.WebDriverManager
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver

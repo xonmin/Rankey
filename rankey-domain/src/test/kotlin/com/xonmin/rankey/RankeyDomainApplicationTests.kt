@@ -1,8 +1,6 @@
-package com.xonmin.rankeydomain
+package com.xonmin.rankey
 
-import org.junit.jupiter.api.Test
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootApplication
 class RankeyDomainApplicationTests {

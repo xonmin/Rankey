@@ -1,16 +1,16 @@
-package com.xonmin.rankeycrawler
+package com.xonmin.rankey
 
-import com.xonmin.rankeycrawler.util.Constant.RANKEY_BASE_PACKAGE
+import com.xonmin.rankey.util.Constant.RANKEY_BASE_PACKAGE
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.runApplication
-import org.springframework.context.annotation.ComponentScan
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
 import org.springframework.scheduling.annotation.EnableScheduling
 
-@ComponentScan("com.xonmin.rankeydomain", "com.xonmin.rankeycrawler")
 @SpringBootApplication(scanBasePackages = [RANKEY_BASE_PACKAGE])
-@EnableScheduling
 @ConfigurationPropertiesScan(basePackages = [RANKEY_BASE_PACKAGE])
+@EnableMongoRepositories
+@EnableScheduling
 class RankeyCrawlerApplication
 
 fun main(args: Array<String>) {

@@ -1,4 +1,4 @@
-package com.xonmin.rankeycrawler.util
+package com.xonmin.rankey.util
 
 import java.time.LocalDate
 import java.time.LocalDateTime
