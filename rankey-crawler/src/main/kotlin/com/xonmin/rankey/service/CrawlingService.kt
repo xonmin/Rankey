@@ -1,8 +1,8 @@
 package com.xonmin.rankey.service
 
+import com.xonmin.rankey.model.GoogleKeyword
 import com.xonmin.rankey.util.Constant
 import com.xonmin.rankey.util.DateUtil
-import com.xonmin.rankey.model.GoogleKeyword
 import io.github.bonigarcia.wdm.WebDriverManager
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
@@ -23,33 +23,34 @@ class CrawlingService {
         return ChromeDriver()
     }
 
-    fun crawl(): List<GoogleKeyword> {
+    fun crawl(): Result<List<GoogleKeyword>> {
         val driver = chrome()
         val dateTimeStamp =
             DateUtil.convertDateToString(LocalDateTime.now(), DateUtil.DATE_TIME_WITH_DELIMITER_FORMATTER)
         val date = DateUtil.convertDateTimeToDate(LocalDateTime.now().minusDays(1))
+
         log.info("Start Crawling For [$date] At : [$dateTimeStamp]")
 
-        try {
-            // url get
-            driver.get(Constant.GOOGLE_URL)
+        val crawlResult = runCatching {
+            val keywordBlockList = getKeywordBlocks(driver)
 
-            val targetKeywordsBox: WebElement = driver.findElement(By.xpath(Constant.CRAWL_TARGET_BOX_XPATH))
-            val crawlDate = targetKeywordsBox.findElement(By.xpath(Constant.CRWAL_TARGET_DATE_XPATH)).text
-            log.info("Access Page Keyword Target : [$crawlDate]")
-
-            val keywordBlockList =
-                targetKeywordsBox.findElements(By.className(Constant.CRWAL_TARGET_BLOCKLIST_CLASSNAME))
-
-            return keywordBlockList.map { block ->
-                toGoogleKeyword(block, dateTimeStamp, date)
-            }.toList()
-        } catch (e: Exception) {
-            log.error("Crawling ERROR : [${e.printStackTrace()}]")
-        } finally {
+            keywordBlockList.map { block -> toGoogleKeyword(block, dateTimeStamp, date) }
+        }.also {
             driver.close()
         }
-        return emptyList()
+
+        return crawlResult
+    }
+
+    private fun getKeywordBlocks(driver: WebDriver): List<WebElement> {
+        // url get
+        driver.get(Constant.GOOGLE_URL)
+
+        val targetKeywordsBox: WebElement = driver.findElement(By.xpath(Constant.CRAWL_TARGET_BOX_XPATH))
+        val crawlDate = targetKeywordsBox.findElement(By.xpath(Constant.CRWAL_TARGET_DATE_XPATH)).text
+        log.info("Access Page Keyword Target : [$crawlDate]")
+
+        return targetKeywordsBox.findElements(By.className(Constant.CRWAL_TARGET_BLOCKLIST_CLASSNAME))
     }
 
     private fun toGoogleKeyword(
@@ -81,9 +82,10 @@ class CrawlingService {
             .findElement(By.className(Constant.CLASS_SEARCH_COUNT_TITLE)).text
         val timestamp = DateUtil.convertStringToDateTime(dateTimeStamp)
 
-        // @TODO fix invalid hexadecimal representation of an ObjectId: [개천절]
-        log.info("Crawling Data : rank : [$rank], keyword : [$keyword], searchCount: [$searchCount] " +
-                "newsTitle: [$newsTitle], link: [$newsUrl]")
+        log.info(
+            "Crawling Data : rank : [$rank], keyword : [$keyword], searchCount: [$searchCount] " +
+                    "newsTitle: [$newsTitle], link: [$newsUrl]"
+        )
         return GoogleKeyword(
             rank = rank,
             keyword = keyword,
