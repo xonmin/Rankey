@@ -1,0 +1,13 @@
+
+spring:
+  config:
+    import:
+    - classpath:/application-domain.yaml
+
+server:
+  port: 9000
+  shutdown: graceful
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true

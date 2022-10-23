@@ -45,6 +45,9 @@ subprojects {
         // Kotlin Logging
         implementation("io.github.microutils:kotlin-logging-jvm:$kotlinLoggingVersion")
 
+        // mongoDB
+        implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+
         // Test
         testImplementation("org.springframework.boot:spring-boot-starter-test")
     }
