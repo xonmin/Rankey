@@ -10,12 +10,12 @@ import java.time.LocalDateTime
 @Document("google-keyword")
 data class GoogleKeyword(
     @Id
-    private val id: ObjectId? = null,
-    private val rank: Int,
-    private val keyword: String,
-    private val searchCount: String,
-    private val newsTitle: String,
-    private val newsLink: String,
-    private val date: LocalDate,
-    @CreatedDate private val createDt: LocalDateTime
+    val id: ObjectId? = null,
+    val rank: Int,
+    val keyword: String,
+    val searchCount: String,
+    val newsTitle: String,
+    val newsLink: String,
+    val date: LocalDate,
+    @CreatedDate val createDt: LocalDateTime
 )

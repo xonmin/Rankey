@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    include: domain
+
+server:
+  port: 9000
+  shutdown: graceful
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
