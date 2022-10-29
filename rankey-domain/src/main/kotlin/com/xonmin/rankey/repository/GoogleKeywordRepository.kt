@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository
 import java.time.LocalDate
 
 interface GoogleKeywordRepository : MongoRepository<GoogleKeyword, ObjectId> {
-    fun findByDateBetween(today: LocalDate, end: LocalDate)
+    fun findByDateBetween(today: LocalDate, past: LocalDate) : List<GoogleKeyword>
 }
