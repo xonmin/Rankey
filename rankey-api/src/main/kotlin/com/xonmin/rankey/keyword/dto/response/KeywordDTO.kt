@@ -25,5 +25,3 @@ data class KeywordDTO(
             )
     }
 }
-
-

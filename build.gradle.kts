@@ -1,5 +1,17 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+buildscript {
+    repositories {
+        maven(url = "https://plugins.gradle.org/m2/")
+    }
+    dependencies {
+        classpath("gradle.plugin.org.datlowe.maven-publish-auth:buildSrc:2.0.2")
+        classpath("org.jlleitschuh.gradle:ktlint-gradle:9.1.0")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.7.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${project.properties["kotlinVersion"]}")
+    }
+}
+
 plugins {
     id("org.springframework.boot") version "2.7.3"
     id("io.spring.dependency-management") version "1.0.13.RELEASE"

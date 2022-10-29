@@ -1,6 +1,6 @@
 package com.xonmin.rankey
 
-import com.xonmin.rankey.util.Constant.RANKEY_BASE_PACKAGE
+import com.xonmin.rankey.support.Constant.RANKEY_BASE_PACKAGE
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.runApplication

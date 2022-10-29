@@ -18,5 +18,4 @@ class KeywordService(
 
         return LastWeekKeywordResponseDTO(nowDay, lastWeeksKeywordsDTO)
     }
-
 }

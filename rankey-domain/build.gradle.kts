@@ -12,4 +12,3 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     annotationProcessor ("org.springframework.boot:spring-boot-configuration-processor")
 }
-
