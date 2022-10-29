@@ -1,8 +1,7 @@
 package com.xonmin.rankey
 
 import com.xonmin.rankey.service.CrawlingService
-import jdk.nashorn.internal.ir.annotations.Ignore
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.Disabled
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -12,7 +11,7 @@ internal class CrawlingServiceTest {
     @Autowired
     lateinit var crawlingService: CrawlingService
 
-    @Ignore
+    @Disabled
     fun test() {
         crawlingService.crawl()
     }
