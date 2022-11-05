@@ -8,6 +8,7 @@ buildscript {
         classpath("gradle.plugin.org.datlowe.maven-publish-auth:buildSrc:2.0.2")
         classpath("org.jlleitschuh.gradle:ktlint-gradle:9.1.0")
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.7.1")
+        classpath("com.github.mowedgrass:jasypt-gradle-boot-plugin:0.1.33")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${project.properties["kotlinVersion"]}")
     }
 }
